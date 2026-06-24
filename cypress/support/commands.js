@@ -23,3 +23,106 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+Cypress.Commands.add('fillMandatoryFieldsAndSubmit', (firstName, lastName, email, phone, text) => {
+    cy.get('#firstName')
+        .should('be.visible')
+        .type(firstName)
+
+    cy.get('#lastName')
+        .should('be.visible')
+        .type(lastName)
+
+
+    cy.get('#email')
+        .should('be.visible')
+        .type(email)
+
+
+    cy.get('#phone')
+        .should('be.visible')
+        .type(phone)
+
+
+    cy.get('#open-text-area')
+        .should('be.visible')
+        .type(text, { delay: 0 })
+
+
+    cy.get('button[type="submit"]')
+        .click()
+
+
+    cy.get('.success')
+        .should('be.visible')
+        .and('contain', 'Mensagem enviada com sucesso.')
+})
+
+Cypress.Commands.add('PreencherCamposcomObjeto', (user) => {
+    cy.get('#firstName')
+        .should('be.visible')
+        .type(user.firstName)
+
+    cy.get('#lastName')
+        .should('be.visible')
+        .type(user.lastName)
+
+
+    cy.get('#email')
+        .should('be.visible')
+        .type(user.email)
+
+
+    cy.get('#phone')
+        .should('be.visible')
+        .type(user.phone)
+
+
+    cy.get('#open-text-area')
+        .should('be.visible')
+        .type(user.text, { delay: 0 })
+
+
+    cy.get('button[type="submit"]')
+        .click()
+
+
+    cy.get('.success')
+        .should('be.visible')
+        .and('contain', 'Mensagem enviada com sucesso.')
+})
+
+Cypress.Commands.add('PreencherCamposcomObjetoElegante', (
+    { firstName, lastName, email, phone, text }
+) => {
+    cy.get('#firstName')
+        .should('be.visible')
+        .type(firstName)
+
+    cy.get('#lastName')
+        .should('be.visible')
+        .type(lastName)
+
+
+    cy.get('#email')
+        .should('be.visible')
+        .type(email)
+
+
+    cy.get('#phone')
+        .should('be.visible')
+        .type(phone)
+
+
+    cy.get('#open-text-area')
+        .should('be.visible')
+        .type(text, { delay: 0 })
+
+
+    cy.get('button[type="submit"]')
+        .click()
+
+
+    cy.get('.success')
+        .should('be.visible')
+        .and('contain', 'Mensagem enviada com sucesso.')
+})

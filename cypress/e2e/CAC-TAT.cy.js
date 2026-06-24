@@ -184,4 +184,13 @@ describe('Central de Atendimento ao Cliente TAT', () => {
       .should('be.visible')
       .and('contain', 'Valide os campos obrigatórios!')
   })
+
+  it.only('Envia formulário com sucesso usando comando customizado', () => {
+
+    //cy.fillMandatoryFieldsAndSubmit('Felipe', 'Coelho', 'felipe@gmail.com', '62982612271', 'Mensagem de teste')
+
+    //cy.PreencherCamposcomObjeto({lastName: 'Coelho', firstName: 'Marina', email: 'marina@gmail.com', phone: '62698542267', text: 'testestetstetsttststetsetset'})
+    cy.PreencherCamposcomObjetoElegante({ lastName: 'Coelho', firstName: 'Marina', email: 'marina@gmail.com', phone: '62698542267', text: 'testestetstetsttststetsetset' })
+  })
+
 })

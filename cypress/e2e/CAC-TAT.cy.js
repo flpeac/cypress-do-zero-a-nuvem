@@ -182,12 +182,35 @@ describe('Central de Atendimento ao Cliente TAT', () => {
       .and('contain', 'Valide os campos obrigatórios!')
   })
 
-  it.only('Envia formulário com sucesso usando comando customizado', () => {
+  it('Envia formulário com sucesso usando comando customizado', () => {
 
     cy.fillMandatoryFieldsAndSubmit()
 
     //cy.PreencherCamposcomObjeto({lastName: 'Coelho', firstName: 'Marina', email: 'marina@gmail.com', phone: '62698542267', text: 'testestetstetsttststetsetset'})
     //cy.PreencherCamposcomObjetoElegante({ lastName: 'Coelho', firstName: 'Marina', email: 'marina@gmail.com', phone: '62698542267', text: 'testestetstetsttststetsetset' })
+  })
+
+   it.only('Seleciona um produto (YouTube) por seu texto', () => {
+
+    cy.get('#product')
+        .select('YouTube')
+        .should('have.value', 'youtube')
+  })
+  
+
+  it('Seleciona um produto (Mentoria) por seu valor', () => {
+
+    cy.get('#product')
+        .select('mentoria')
+        .should('have.value', 'mentoria')
+  })
+ 
+
+  it('Seleciona um produto (Blog) por seu índice', () => {
+
+    cy.get('#product')
+        .select(1)
+        .should('have.value', 'blog')
   })
 
 })

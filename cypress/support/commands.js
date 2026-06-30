@@ -43,6 +43,8 @@ Cypress.Commands.add('fillMandatoryFieldsAndSubmit', (data = {firstName: 'John',
         .type(data.phone)
 
 
+    
+    
     cy.get('#open-text-area')
         .should('be.visible')
         .type(data.text, { delay: 0 })

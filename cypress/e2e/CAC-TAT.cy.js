@@ -33,7 +33,7 @@ describe('Central de Atendimento ao Cliente TAT', () => {
       .type('O incentivo ao avanço tecnológico, assim como a determinação clara de objetivos talvez venha a ressaltar a relatividade dos modos de operação convencionais.', { delay: 0 })
       .should('have.value', 'O incentivo ao avanço tecnológico, assim como a determinação clara de objetivos talvez venha a ressaltar a relatividade dos modos de operação convencionais.')
 
-    cy.get('button[type="submit"]')
+    cy.contains('button', 'Enviar')
       .click()
 
 
@@ -69,7 +69,7 @@ describe('Central de Atendimento ao Cliente TAT', () => {
       .type('O incentivo ao avanço tecnológico, assim como a determinação clara de objetivos talvez venha a ressaltar a relatividade dos modos de operação convencionais.', { delay: 0 })
     //.should('have.value', 'O incentivo ao avanço tecnológico, assim como a determinação clara de objetivos talvez venha a ressaltar a relatividade dos modos de operação convencionais.')
 
-    cy.get('button[type="submit"]')
+    cy.contains('button', 'Enviar')
       .click()
 
 
@@ -82,10 +82,7 @@ describe('Central de Atendimento ao Cliente TAT', () => {
 
   it('Validar campo telefone', () => {
     cy.get('#phone')
-      .should('be.visible')
       .type('asdfg')
-
-    cy.get('#phone')
       .should('have.value', '')
   })
 
@@ -119,7 +116,7 @@ describe('Central de Atendimento ao Cliente TAT', () => {
       .type('O incentivo ao avanço tecnológico, assim como a determinação clara de objetivos talvez venha a ressaltar a relatividade dos modos de operação convencionais.', { delay: 0 })
     //.should('have.value', 'O incentivo ao avanço tecnológico, assim como a determinação clara de objetivos talvez venha a ressaltar a relatividade dos modos de operação convencionais.')
 
-    cy.get('button[type="submit"]')
+    cy.contains('button', 'Enviar')
       .click()
 
     cy.get('.error')
@@ -177,7 +174,7 @@ describe('Central de Atendimento ao Cliente TAT', () => {
 
   it('Exibe mensagem de erro ao submeter o formulário sem preencher os campos obrigatórios', () => {
 
-    cy.get('button[type="submit"]')
+    cy.contains('button', 'Enviar')
       .click()
 
     cy.get('.error')
@@ -187,10 +184,10 @@ describe('Central de Atendimento ao Cliente TAT', () => {
 
   it.only('Envia formulário com sucesso usando comando customizado', () => {
 
-    //cy.fillMandatoryFieldsAndSubmit('Felipe', 'Coelho', 'felipe@gmail.com', '62982612271', 'Mensagem de teste')
+    cy.fillMandatoryFieldsAndSubmit()
 
     //cy.PreencherCamposcomObjeto({lastName: 'Coelho', firstName: 'Marina', email: 'marina@gmail.com', phone: '62698542267', text: 'testestetstetsttststetsetset'})
-    cy.PreencherCamposcomObjetoElegante({ lastName: 'Coelho', firstName: 'Marina', email: 'marina@gmail.com', phone: '62698542267', text: 'testestetstetsttststetsetset' })
+    //cy.PreencherCamposcomObjetoElegante({ lastName: 'Coelho', firstName: 'Marina', email: 'marina@gmail.com', phone: '62698542267', text: 'testestetstetsttststetsetset' })
   })
 
 })

@@ -23,29 +23,29 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
-Cypress.Commands.add('fillMandatoryFieldsAndSubmit', (firstName, lastName, email, phone, text) => {
+Cypress.Commands.add('fillMandatoryFieldsAndSubmit', (data = {firstName: 'John', lastName: 'Snow', email: 'John@winterfell.com', phone: '62982612271', text: 'Teste.'}) => {
     cy.get('#firstName')
         .should('be.visible')
-        .type(firstName)
+        .type(data.firstName)
 
     cy.get('#lastName')
         .should('be.visible')
-        .type(lastName)
+        .type(data.lastName)
 
 
     cy.get('#email')
         .should('be.visible')
-        .type(email)
+        .type(data.email)
 
 
     cy.get('#phone')
         .should('be.visible')
-        .type(phone)
+        .type(data.phone)
 
 
     cy.get('#open-text-area')
         .should('be.visible')
-        .type(text, { delay: 0 })
+        .type(data.text, { delay: 0 })
 
 
     cy.get('button[type="submit"]')
@@ -118,7 +118,7 @@ Cypress.Commands.add('PreencherCamposcomObjetoElegante', (
         .type(text, { delay: 0 })
 
 
-    cy.get('button[type="submit"]')
+    cy.contains('button', 'Enviar')
         .click()
 
 

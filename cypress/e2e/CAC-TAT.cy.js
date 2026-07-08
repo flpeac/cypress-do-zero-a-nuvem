@@ -86,7 +86,7 @@ describe('Central de Atendimento ao Cliente TAT', () => {
       .should('have.value', '')
   })
 
-  it('Exibe mensagem de erro quando o telefone se torna obrigatório mas não é preenchido antes do envio do formulári', () => {
+  it('Exibe mensagem de erro quando o telefone se torna obrigatório mas não é preenchido antes do envio do formulário', () => {
     cy.get('#firstName')
       .should('be.visible')
       .type('Felipe')
@@ -109,7 +109,8 @@ describe('Central de Atendimento ao Cliente TAT', () => {
       .should('have.value', 'felipe@gmail.com')
 
     cy.get('#phone-checkbox')
-      .click()
+      .check()
+      .should('be.checked')
 
     cy.get('#open-text-area')
       .should('be.visible')
@@ -190,27 +191,146 @@ describe('Central de Atendimento ao Cliente TAT', () => {
     //cy.PreencherCamposcomObjetoElegante({ lastName: 'Coelho', firstName: 'Marina', email: 'marina@gmail.com', phone: '62698542267', text: 'testestetstetsttststetsetset' })
   })
 
-   it.only('Seleciona um produto (YouTube) por seu texto', () => {
+  it('Seleciona um produto (YouTube) por seu texto', () => {
 
     cy.get('#product')
-        .select('YouTube')
-        .should('have.value', 'youtube')
+      .select('YouTube')
+      .should('have.value', 'youtube')
   })
-  
+
 
   it('Seleciona um produto (Mentoria) por seu valor', () => {
 
     cy.get('#product')
-        .select('mentoria')
-        .should('have.value', 'mentoria')
+      .select('mentoria')
+      .should('have.value', 'mentoria')
   })
- 
+
 
   it('Seleciona um produto (Blog) por seu índice', () => {
 
     cy.get('#product')
-        .select(1)
-        .should('have.value', 'blog')
+      .select(1)
+      .should('have.value', 'blog')
+  })
+
+  it('Marca o tipo de atendimento "Feedback"', () => {
+
+    //Solução do professor
+    cy.get('input[type="radio"][value="feedback"]')
+      .check()
+      .should('be.checked')
+
+    //Minhas soluções
+    //cy.get('#support-type').find('[type="radio"]').check('feedback')
+    //  .should('have.value', 'feedback')
+
+    // cy.get('[type="radio"]').check('feedback')
+    //  .should('have.value', 'feedback')
+  })
+
+  it('Marca cada tipo de atendimento', () => {
+
+    //Solução do professor
+    cy.get('input[type="radio"]')
+      .each(typeOfService => {
+        cy.wrap(typeOfService)
+          .check()
+          .should('be.checked')
+      })
+
+    //Minha solução
+    /*  cy.get('input[type="radio"][value="feedback"]')
+       .check()
+       .should('be.checked')
+ 
+     cy.get('input[type="radio"][value="ajuda"]')
+       .check()
+       .should('be.checked')
+ 
+     cy.get('input[type="radio"][value="elogio"]')
+       .check()
+       .should('be.checked') */
+  })
+
+  it('Marca ambos checkboxes, depois desmarca o último', () => {
+
+    //Solução professor
+    cy.get('input[type="checkbox"]')
+      .check()
+      .should('be.checked')
+      .last()
+      .uncheck()
+      .should('not.be.checked')
+
+
+    //Minha solução
+    /*  cy.get('#check input[type="checkbox"]')
+      .as('checkboxes')
+      .check()
+
+    cy.get('@checkboxes')
+      .each(checkbox => {
+        expect(checkbox[0].checked).to.equal(true)
+      })
+
+    cy.get('@checkboxes')
+      .last()
+      .uncheck()
+      .should('not.be.checked') */
+
+
+  })
+
+
+  it('Selecionar um arquivo da pasta fixtures', () => {
+
+    //Solução Professor
+    cy.get('input[type="file"]')
+      .selectFile('cypress/fixtures/example.json')
+      .should(input => {
+        expect(input[0].files[0].name).to.equal('example.json')
+      })
+
+
+    //Minha solução
+    /*cy.get('input[type="file"]')
+      .selectFile('cypress/fixtures/example.json')
+      .then(input => {
+        expect(input[0].files[0].name).to.equal('example.json')
+      })*/
+  })
+
+
+  it('seleciona um arquivo simulando um drag-and-drop', () => {
+
+
+    //Solução Professor
+    cy.get('input[type="file"]')
+      .selectFile('cypress/fixtures/example.json', { action: 'drag-drop' })
+      .should(input => {
+        expect(input[0].files[0].name).to.equal('example.json')
+      })
+
+
+    //Minha solução
+    /* cy.get('input[type="file"]')
+       .selectFile('cypress/fixtures/example.json', { action: 'drag-drop' })
+       .then(input => {
+         expect(input[0].files[0].name).to.equal('example.json')
+       })*/
+  })
+
+  it.only('seleciona um arquivo utilizando uma fixture para a qual foi dada um alias', () => {
+    cy.fixture('example.json').as('sampleFile')
+    cy.get('input[type="file"]')
+      .selectFile('@sampleFile', { action: 'drag-drop' })
+      .should(input => {
+        expect(input[0].files[0].name).to.equal('example.json')
+      })
+
+
+
   })
 
 })

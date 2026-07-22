@@ -1,8 +1,10 @@
 # 🌲 Cypress, do Zero à Nuvem ☁️
 
-Um projeto exemplo do "Cypress, do zero a nuvem" da escola Talking About Testing.
+👋 Seja bem-vindo(a)!
 
-## O que aprendi?
+É muito bom tê-lo(a) aqui. Tenho certeza que você vai amar esse curso. ❤️
+
+## O que você vai aprender?
 
 - Como configurar um projeto Cypress do zero
 - Como visitar páginas locais e remotas
